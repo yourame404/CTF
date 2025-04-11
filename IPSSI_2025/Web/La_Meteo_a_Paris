@@ -1,13 +1,1 @@
-**C'était**une fucking sqli dans le user-agent, impossible de l'avoir sans sqlmap, du moins, l'exploiter, sinon pour la repérer dans Burp j'ai injecté une apostrophe et ca a déclenché une erreur côté serveur
-
-J'ai pris la requete et je l'ai mise dans un fichier en mettant comme valeur du User-Agent un asterix pour indiquer à SQLMap que c'est ce paramètre qu'il faut tester
-
-Le dbms etait SQLite, la commande pour récupérer le nom des tables : 
-sqlmap -r request.txt --level=5 --risk=3 --batch --dump --tables
-
-On a une table secret, pour dump les données de la table : 
-sqlmap -r request.txt --level=5 --risk=3 --batch --dump -T secret
-
-
-Au final, c'étais une blind-sqli, donc difficil de l'exploiter à la main, difficile aussi de la repérer, il fallait lancer sqlmap directement avec --level=3 pour qu'il teste vraiment tous les paramètres de la requetes, y compris les headers
 
